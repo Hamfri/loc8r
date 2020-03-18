@@ -7,6 +7,25 @@ html
     link(rel='stylesheet', href='/stylesheets/all.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    nav.navbar.fixedtop.navbar-expand-md.navbar-light
+      .container
+        a.navbar-brand(href='/') Loc8r
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target="#navbarMain")
+          span.navbar-toggler-icon
+        #navbarMain.navbar-collapse.collapse
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link(href="/about") About
+
+    .container.content
+      block content
+
+      footer
+        .row
+          .col-12
+            small &copy; loc8r
+
+    script(src='/javascripts/jquery-3.4.1.slim.min.js')
+    script(src='/javascripts/popper.min.js')
     script(src='/javascripts/bootstrap.min.js')
     script(src='/javascripts/all.min.js')
