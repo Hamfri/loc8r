@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+require('./app_server/models/db');
 
 const aboutRouter = require('./app_server/routes/others');
 const locationsRouter = require('./app_server/routes/locations.js');

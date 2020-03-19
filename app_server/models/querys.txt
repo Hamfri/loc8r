@@ -1,0 +1,59 @@
+/*db.locations.save({
+    name: 'Molly Malone Irish Pub',
+    address: '',
+    rating: 0,
+    facilities: ['Drinks','Food','WIFI'],
+    coords: [11.0528, 50.9945],
+    openingTimes: [{
+        days: 'Monday - Friday',
+        opening: '6:00 AM',
+        closing: '6:00 PM',
+        closed: false
+    },{
+        days: 'Saturday',
+        opening: '6:00am',
+        closing: '6:00pm',
+        closed: false
+    },{
+        days: 'Sunday',
+        closed: true
+    }],
+    reviews: [
+        {
+            author: 'Rahab Nyakwea',
+            _id: ObjectId(),
+            rating: 1,
+            timestamp: new Date("Mar 19, 2020"),
+            reviewText: 'Not good'
+        },
+        {
+            author: 'Layla Wanjiru',
+            _id: ObjectId(),
+            rating: 3,
+            timestamp: new Date("Mar 19, 2020"),
+            reviewText: 'Nice for kids'
+        },
+        {
+            author: 'Zayne',
+            _id: ObjectId(),
+            rating: 4,
+            timestamp: new Date("Mar 19, 2020"),
+            reviewText: 'I like it'
+        }
+    ]
+});*/
+
+/*db.locations.update({
+    _id: ObjectId("5e736423f885c9762dafe293")
+},{
+    $push: {
+        reviews: {
+            author: 'Humphrey Kiboi',
+            _id: ObjectId(),
+            rating: 5,
+            timestamp: new Date("Mar 19, 2020"),
+            reviewText: 'For junkies'
+        }
+    }
+}
+);*/
