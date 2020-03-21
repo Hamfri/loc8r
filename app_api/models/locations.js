@@ -37,7 +37,7 @@ const locationSchema = new mongoose.Schema({
     rating: {
         type: Number,
         'default': 0,
-        min: 1,
+        min: 0,
         max: 5
     },
     facilities: [String],
@@ -51,4 +51,5 @@ const locationSchema = new mongoose.Schema({
 
 locationSchema.index({coords: '2dsphere'});
 
-mongoose.model('Location', locationSchema);
+const location = mongoose.model('Location', locationSchema);
+module.exports = location;

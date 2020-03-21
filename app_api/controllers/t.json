@@ -1,0 +1,27 @@
+{
+    "name": "Mumbai Restaurant",
+    "address": "",
+    "facilities": ["WIFI","FOOD","DRINKS"],
+    "coords": {
+        "lng": 11.0528,
+        "lat": 50.9985
+    },
+    "openingTimes": [
+        {
+            "days":"Monday -Friday",
+            "opening": "6.00am",
+            "closing": "8:00pm",
+            "closed": false
+        },
+        {
+            "days":"Saturday",
+            "opening": "10:00am",
+            "closing": "10:00pm",
+            "closed": false
+        },
+        {
+            "days":"Sunday",
+            "closed": true
+        }
+    ]
+}
