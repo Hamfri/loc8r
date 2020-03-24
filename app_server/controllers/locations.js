@@ -4,7 +4,7 @@ const apiOptions = {
     mapsApiKey: ''
 };
 if (process.NODE_ENV === 'production'){
-    apiOptions.server = 'http://loc8r-hamfri.herokuapp.com';
+    apiOptions.server = 'https://loc8r-hamfri.herokuapp.com';
     apiOptions.mapsApiKey = process.MAPS_API_KEY
 
 };
@@ -27,7 +27,7 @@ const homeList = (req, res) => {
         requestOptions,
         (err, {statusCode}, body) => {
             let data = [];
-            if (!err && statusCode === 200 && body.length){
+            if (statusCode === 200 && body.length){
                 // Map enables looping over all the data
                 data = body.map((item) => {
                     // Here you can manipulate the returned data
