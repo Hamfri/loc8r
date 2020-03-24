@@ -14,7 +14,7 @@ const locationsListByDistance = async(req, res) => {
         maxDistance: 20000,
         limit: 10
     };
-    if (!lng || !lat){
+    if ((!lng && lng !== 0) || (!lat && lat !== 0)){
         return res
             .status(404)
             .json({
@@ -37,7 +37,7 @@ const locationsListByDistance = async(req, res) => {
                 address: result.address,
                 rating: result.rating,
                 facilities: result.facilities,
-                distance: `${result.distance.calculated.toFixed()}m`
+                distance: formatDistance(result.distance.calculated)
             }
         });
         res
@@ -50,6 +50,20 @@ const locationsListByDistance = async(req, res) => {
             .json(err);
     }
 };
+
+const formatDistance = (distance) => {
+    let thisDistance = 0;
+    let unit = 'm';
+    if(distance > 1000){
+        thisDistance = parseFloat(distance / 1000).toFixed(2);
+        unit = 'km'
+    }
+    else {
+        thisDistance = Math.floor(distance);
+    }
+    return `${thisDistance} ${unit}`;
+}
+
 
 const locationsCreate = (req, res) => {
     LocationModel.create({
