@@ -27,7 +27,7 @@ const homeList = (req, res) => {
         requestOptions,
         (err, {statusCode}, body) => {
             let data = [];
-            if (!err && statusCode === 200 && body.length){
+            if (statusCode === 200 && body.length){
                 // Map enables looping over all the data
                 data = body.map((item) => {
                     // Here you can manipulate the returned data
