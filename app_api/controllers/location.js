@@ -59,7 +59,7 @@ const formatDistance = (distance) => {
         unit = 'km'
     }
     else {
-        thisDistance = Math.floor(distance);
+        thisDistance = Math.floor(distance).toString();
     }
     return `${thisDistance} ${unit}`;
 }
