@@ -1,6 +1,6 @@
 const request = require('request');
 const apiOptions = {
-    server: 'https://loc8r-hamfri.herokuapp.com',
+    server: 'http://localhost:3030',
     mapsApiKey: ''
 };
 if (process.env.NODE_ENV === 'production'){
