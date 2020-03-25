@@ -1,11 +1,11 @@
 const request = require('request');
 const apiOptions = {
-    server: 'http://localhost:3030',
+    server: 'https://loc8r-hamfri.herokuapp.com',
     mapsApiKey: ''
 };
-if (process.NODE_ENV === 'production'){
+if (process.env.NODE_ENV === 'production'){
     apiOptions.server = 'https://loc8r-hamfri.herokuapp.com';
-    apiOptions.mapsApiKey = process.MAPS_API_KEY
+    apiOptions.mapsApiKey = process.env.MAPS_API_KEY
 
 };
 /**
