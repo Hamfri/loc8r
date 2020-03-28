@@ -5,8 +5,6 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 require('./app_api/models/db');
 
-const aboutRouter = require('./app_server/routes/others');
-const locationsRouter = require('./app_server/routes/locations');
 const apiRouter = require('./app_api/routes/api');
 
 const app = express();
@@ -19,17 +17,18 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'app_public')));
+app.use(express.static(path.join(__dirname, 'app_public', 'dist', 'loc8r-public')));
 
 app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
-app.use('/', locationsRouter);
-app.use('/about', aboutRouter);
 app.use('/api', apiRouter);
+// Regex is more precise here but can be replaced with '*'
+app.get((/(\/about)|(\/location\/[a-z0-9]{24})/), function(req, res, next){
+  res.sendFile(path.join(__dirname,'app_public', 'dist', 'loc8r-public', 'index.html'))
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
