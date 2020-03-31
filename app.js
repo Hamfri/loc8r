@@ -1,9 +1,12 @@
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const passport = require('passport');
 require('./app_api/models/db');
+require('./app_api/config/passport');
 
 const apiRouter = require('./app_api/routes/api');
 
@@ -18,10 +21,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'app_public', 'dist', 'loc8r-public')));
+app.use(passport.initialize());
 
 app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   next();
 });
 app.use('/api', apiRouter);
@@ -36,6 +40,15 @@ app.use(function(req, res, next) {
 });
 
 // error handler
+// catch unauthorized errors add before the rest to avoid it being intercepted by the once below it
+app.use((err, req, res, next) => {
+  if(err.name === 'UnauthorizedError'){
+    res
+      .status(401)
+      .json({"message": err.name + ": " + err.message});
+  }
+});
+
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
