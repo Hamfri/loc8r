@@ -3,6 +3,7 @@ import { Location, Review } from '../interfaces/locations';
 
 import { environment } from '../../environments/environment';
 import { LocationService } from '../services/location.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-location-details',
@@ -22,13 +23,14 @@ export class LocationDetailsComponent implements OnInit {
     reviewText: ''
   };
 
-  constructor(private locationService: LocationService) { }
+  constructor(private locationService: LocationService,
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
   private formIsValid(): boolean {
-    if(this.newReview.author.length && this.newReview.rating && this.newReview.reviewText.length){
+    if(this.newReview.rating && this.newReview.reviewText.length){
       return true;
     }
     else{
@@ -58,6 +60,15 @@ export class LocationDetailsComponent implements OnInit {
     else{
       this.formError = 'All fields are required, please try again';
     }
+  }
+
+  public isLoggedIn(): boolean {
+    return this.authenticationService.isLoggedIn();
+  }
+
+  public getUsername(): string {
+    const { name } = this.authenticationService.getCurrentUser();
+    return name ? name : 'Guest';
   }
 
 }
